@@ -1,21 +1,36 @@
 /* The following exercises were borrowed from Will Crichton's CS 242 Rust lab. */
 
-use std::collections::HashSet;
+use std::{collections::HashSet, hash::Hash};
 
 fn main() {
     println!("Hi! Try running \"cargo test\" to run tests.");
 }
 
 fn add_n(v: Vec<i32>, n: i32) -> Vec<i32> {
-    unimplemented!()
+    v.iter().map(|c| c + n).collect()
 }
 
 fn add_n_inplace(v: &mut Vec<i32>, n: i32) {
-    unimplemented!()
+    for  i in v {
+    *i  += n;
+    }
 }
 
 fn dedup(v: &mut Vec<i32>) {
-    unimplemented!()
+    let mut dict = HashSet::new();
+    let mut newv = Vec::new();
+    for i in 0..v.len() {
+        if dict.contains(&v[i]) {
+            continue;
+        } else {
+            dict.insert(v[i]);
+            newv.push(v[i]);
+        }
+    }
+    v.clear();
+    for i in 0..newv.len() {
+        v.push(newv[i]);
+    }
 }
 
 #[cfg(test)]
