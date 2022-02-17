@@ -9,7 +9,7 @@ fn main() {
     println!("{}", ref3.to_uppercase());
 }
 ```
-
+//repeated borrowing of s
 
 
 Example 2:
@@ -19,6 +19,7 @@ fn drip_drop() -> &String {
     return &s;
 }
 ```
+//
 
 
 

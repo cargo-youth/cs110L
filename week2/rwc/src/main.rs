@@ -1,4 +1,6 @@
 use std::env;
+use std::fs::File;
+use std::io::{self, BufRead};
 use std::process;
 
 fn main() {
@@ -9,4 +11,9 @@ fn main() {
     }
     let filename = &args[1];
     // Your code here :)
+    let file = File::open(filename);
+    let mut lines = Vec::new();
+    for line in io::BufReader::new(file).lines() {
+        let line_str = line;
+    }
 }
