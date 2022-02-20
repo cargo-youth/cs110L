@@ -1,6 +1,7 @@
 use std::env;
 use std::fs::File;
-use std::io::{self, BufRead};
+use std::io::prelude::*;
+use std::io::BufReader;
 use std::process;
 
 fn main() {
@@ -11,9 +12,15 @@ fn main() {
     }
     let filename = &args[1];
     // Your code here :)
-    let file = File::open(filename);
-    let mut lines = Vec::new();
-    for line in io::BufReader::new(file).lines() {
-        let line_str = line;
+    let file = File::open(filename).unwrap();
+    let reader = BufReader::new(file);
+    let mut ans = 0  ;
+    for  line in reader.lines() {
+        let   line = line.unwrap();
+        
+        ans += line.split_ascii_whitespace().map(|_| 1).sum::<i32>();
+       
+        
     }
+    println!("{}", ans);
 }
